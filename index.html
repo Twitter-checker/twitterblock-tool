@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブロックチェッカー</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f5f5f5; }
+        .copy-box { 
+            background: white; padding: 15px; margin-bottom: 15px; 
+            border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .text-to-copy { font-weight: bold; font-size: 16px; word-break: break-all; }
+        .btn-copy { 
+            background: #5865F2; color: white; border: none; 
+            padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 14px;
+        }
+        .btn-copy.copied { background: #2ecc71; }
+    </style>
+</head>
+<body>
+
+    <h1>ブロックチェッカー</h1>
+
+    <div class="copy-box">
+        <span class="text-to-copy">masa238</span>
+        <button class="btn-copy" onclick="copyText(this)">コピー</button>
+    </div>
+
+    <div class="copy-box">
+        <span class="text-to-copy">4shi3sa8ya</span>
+        <button class="btn-copy" onclick="copyText(this)">コピー</button>
+    </div>
+
+    <div class="copy-box">
+        <span class="text-to-copy">chisa0511</span>
+        <button class="btn-copy" onclick="copyText(this)">コピー</button>
+    </div>
+
+    <script>
+        function copyText(button) {
+            const text = button.previousElementSibling.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.innerText;
+                button.innerText = '完了！';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.classList.remove('copied');
+                }, 1000);
+            }).catch(err => {
+                alert('コピーに失敗しました: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
